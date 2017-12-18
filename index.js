@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./rootReducer";
 import {composeWithDevTools} from 'redux-devtools-extension'
+import {userLoggedIn} from "./actions/auth";
 
 
 const store = createStore(
@@ -16,6 +17,11 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
+
+if(localStorage.studentJWT){
+    const user = { webToken: localStorage.studentJWT};
+    store.dispatch(userLoggedIn(user));
+}
 
 
 
