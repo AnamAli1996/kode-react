@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './App';
 import ReactDOM from "react-dom";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import "semantic-ui-css/semantic.min.css"
 import { createStore, applyMiddleware } from "redux";
@@ -29,7 +29,7 @@ if(localStorage.studentJWT){
 ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
-          <App />
+          <Route component={App} />
       </Provider>
     </BrowserRouter>,
     document.getElementById('root'));
