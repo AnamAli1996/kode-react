@@ -7,6 +7,7 @@ import NavigatorBar from "./components/NavigationBar";
 import StudentRoute from './components/routes/StudentRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from "prop-types";
+import SignupPage from "./components/pages/SignupPage";
 
 
 const App = ({location}) => (
@@ -23,6 +24,11 @@ const App = ({location}) => (
                         location={location}
                         path="/login"
                         exact component={LoginPage} />
+                    <GuestRoute
+                        location={location}
+                        path="/signup"
+                        exact component={SignupPage}
+                    />
                     <StudentRoute
                         location={location}
                         path="/dashboard"
