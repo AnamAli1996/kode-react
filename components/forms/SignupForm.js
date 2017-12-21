@@ -1,16 +1,13 @@
 import React from 'react';
-import moment from 'moment';
-import DatePicker from "react-bootstrap-date-picker";
-import 'moment/locale/nb';
+
 
 class SignupForm extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         this.state = {
             firstName: '',
             lastName: '',
             level:'',
-            selectedDate: new Date().toISOString(),
             email:'',
             password:''
         };
@@ -24,25 +21,13 @@ class SignupForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value})
     }
 
-    onDateChanged(value, formattedValue){
-        this.setState({
-            value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-            formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
-        });
-    }
 
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state)
+        console.log(this.state);
         this.props.userSignupRequest(this.state);
     }
 
-    componentDidUpdate() {
-        // Access ISO String and formatted values from the DOM.
-        var hiddenInputElement = document.getElementById("example-datepicker");
-        console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z"
-        console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016"
-    }
 
 
     render(){
@@ -91,8 +76,7 @@ class SignupForm extends React.Component {
                         onChange={this.onChange}
                         type="text"
                         name="email"
-                        className="form-control"
-                    />
+                        className="form-control"/>
                 </div>
 
                 <div className="form-group">
@@ -102,8 +86,7 @@ class SignupForm extends React.Component {
                         onChange={this.onChange}
                         type="password"
                         name="password"
-                        className="form-control"
-                    />
+                        className="form-control"/>
                 </div>
 
                 <div className="form-group">
