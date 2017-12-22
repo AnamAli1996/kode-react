@@ -1,23 +1,36 @@
 import React from 'react';
+import {Jumbotron, Button} from 'react-bootstrap';
+import * as actions  from "../../actions/auth";
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import ConfirmEmailMessage from "../messages/ConfirmEmailMessage"
 import PropTypes from "prop-types"
+import styles from "../../app.css"
 
-const DashboardPage = ({isConfirmed}) => (
-    <div>
-        {!isConfirmed && <ConfirmEmailMessage />}
-    </div>
+const DashboardPage = ({isAuthenticated, logout} ) => (
+    <Jumbotron>
+        <h1>My Dashboard</h1>
+        <p>{isAuthenticated ? (
+            <button onClick={() => logout()}>Logout</button>
+        ) : (
+            <div>
+                <Link to="/login">Login</Link>
+            </div>
+        )}</p>
+    </Jumbotron>
 );
 
 DashboardPage.propTypes = {
-    isConfirmed: PropTypes.bool.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-    return{
-        isConfirmed: !!state.user.confirmed
-    }
-
+    return {
+        isAuthenticated: !!state.user.webToken
+    };
 }
 
-export  default connect(mapStateToProps)(DashboardPage);
+
+
+export default connect(mapStateToProps, { logout: actions.logout })(DashboardPage);

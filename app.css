@@ -7,5 +7,12 @@
 
 }
 
+.container .jumbotron{
+    background: aliceblue;
+}
+
+body{
+    background: orange;
+}
 
 
