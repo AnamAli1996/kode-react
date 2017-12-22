@@ -5,7 +5,7 @@ export default {
 
         login: credentials => {
             var credentialsString = credentials;
-            var apiUrl = "http://localhost:8080/api/demoStudents/login?email=" + credentials.email + "&password=" + credentials.password;
+            var apiUrl = "http://localhost:8080/api/Student/login?email=" + credentials.email + "&password=" + credentials.password;
             return axios.post(apiUrl).then(res => res.data.user,
                 console.log("logged in")
             );

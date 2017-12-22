@@ -5,9 +5,10 @@ class SignupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            accountType: "",
             firstName: '',
             lastName: '',
-            level:'',
+            age:'',
             email:'',
             password:''
         };
@@ -34,6 +35,21 @@ class SignupForm extends React.Component {
         return(
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
+
+                    <div className="form-group">
+                        <label className="control-label"> Account Type </label>
+                        <select
+                            className="form-control"
+                            name="accountType"
+                            onChange={this.onChange}
+                            value={this.state.accountType}>
+                            <option value="" disabled>Account Type</option>
+                            <option value="Student" >Student</option>
+                            <option value="Mentor" > Mentor</option>
+                            <option value="Parent" >Parent</option>
+                        </select>
+                    </div>
+
                     <label className="control-label"> First Name </label>
                     <input
                         value={this.state.firstName}
@@ -56,17 +72,14 @@ class SignupForm extends React.Component {
                 </div>
 
                 <div className="form-group">
-                    <label className="control-label"> Level </label>
-                    <select
-                        className="form-control"
-                        name="level"
+                    <label className="control-label"> Age </label>
+                    <input
+                        value={this.state.age}
                         onChange={this.onChange}
-                        value={this.state.level}>
-                        <option value="" disabled>Choose your level</option>
-                        <option value="Beginner" >Beginner</option>
-                        <option value="Advanced" >Advanced</option>
-                        <option value="Intermediate" >Intermediate</option>
-                    </select>
+                        type="text"
+                        name="age"
+                        className="form-control"
+                    />
                 </div>
 
                 <div className="form-group">

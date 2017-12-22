@@ -11,6 +11,9 @@ import rootReducer from "./rootReducer";
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {userLoggedIn} from "./actions/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import './app.css';
 
 const store = createStore(
     rootReducer,
