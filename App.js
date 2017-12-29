@@ -8,6 +8,7 @@ import StudentRoute from './components/routes/StudentRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import PropTypes from "prop-types";
 import SignupPage from "./components/pages/SignupPage";
+import CourseInfoPage from "./components/pages/CourseInfoPage"
 
 
 const App = ({location}) => (
@@ -33,6 +34,7 @@ const App = ({location}) => (
                         location={location}
                         path="/dashboard"
                         exact component={DashboardPage} />
+
                 </div>
             </div>
         );

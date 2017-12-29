@@ -11,8 +11,18 @@
     background: aliceblue;
 }
 
-body{
+.body {
+    width:100%;
+    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: orange;
 }
 
+.image {
+    width: 20px;
+    height: 20px;
+}
 
+.button{
+    width: 20px;
+    height: 20px;
+}
