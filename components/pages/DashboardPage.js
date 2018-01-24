@@ -1,16 +1,11 @@
 import React from 'react';
-import {Jumbotron, Button} from 'react-bootstrap';
-import axios from 'axios';
+import {Jumbotron} from 'react-bootstrap';
 import * as actions  from "../../actions/auth";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import ConfirmEmailMessage from "../messages/ConfirmEmailMessage"
 import PropTypes from "prop-types"
-import styles from "../../app.css"
 import CourseList from "../search/CourseList";
 
-
-const courseList=[];
 const DashboardPage = ({isAuthenticated, logout} ) => (
 
     <div>
@@ -26,6 +21,9 @@ const DashboardPage = ({isAuthenticated, logout} ) => (
                 )}</p>
             </Jumbotron>
             <CourseList/>
+            <div>
+                <Link to = "/AllCourses"> View All Courses </Link>
+            </div>
         </div>
 
     </div>

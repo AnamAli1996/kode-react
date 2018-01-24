@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import image from '../../search-icon.png'
-import {Link} from 'react-router-dom'
-
 
 
 export default class CourseList extends React.Component {
@@ -16,12 +14,10 @@ export default class CourseList extends React.Component {
             courseId: ""
         };
 
-
-
     }
 
     componentDidMount(){
-        axios.get("http://localhost:8080/api/demoCourse/allCourse")
+        axios.get("http://localhost:8080/api/course/allCourse")
             .then(res => {
                     const courseList = res.data;
                     console.log(courseList);
@@ -37,7 +33,7 @@ export default class CourseList extends React.Component {
 
     myFunction(search) {
         console.log(search);
-         axios.get("http://localhost:8080/api/demoCourse/course/" + search).then(res => {
+         axios.get("http://localhost:8080/api/course/" + search).then(res => {
             const courseId = res.data;
              console.log(res.data);
              this.setState({courseId: courseId});
@@ -48,8 +44,6 @@ export default class CourseList extends React.Component {
     }
 
 
-
-
     render(){
 
         let filteredContacts = this.state.courseList.filter(
@@ -58,10 +52,6 @@ export default class CourseList extends React.Component {
                         (this.state.search.toLowerCase()) !== -1;
             }
         );
-
-
-
-
 
         console.log(this.props.courseList);
         console.log(filteredContacts);
