@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Autocomplete from 'react-autocomplete'
 import image from '../../search-icon.png'
 
 
@@ -11,7 +12,8 @@ export default class CourseList extends React.Component {
         this.state = {
             courseList: [],
             search: "",
-            courseId: ""
+            courseId: "",
+            value: ""
         };
 
     }
@@ -31,14 +33,14 @@ export default class CourseList extends React.Component {
         console.log(this.state.search)
     }
 
-    myFunction(search) {
-        console.log(search);
-         axios.get("http://localhost:8080/api/course/" + search).then(res => {
+    myFunction(value) {
+        console.log(this.state.value);
+         axios.get("http://localhost:8080/api/course/" + this.state.value).then(res => {
             const courseId = res.data;
              console.log(res.data);
              this.setState({courseId: courseId});
              console.log(this.state.courseId);
-             window.location.assign("/course/" + this.state.courseId);
+             window.location.assign("/courses/" + this.state.courseId);
          });
 
     }
@@ -67,27 +69,26 @@ export default class CourseList extends React.Component {
                 <div>
                     <label> Search for Course </label>
                 </div>
-                <div>
-                    <input type="text"
-                           value={this.state.search}
-                           onChange={this.updateSearch.bind(this)}/>
 
-                        <button onClick={() => this.myFunction(this.state.search)}><img  src={image} style={styles} alt="my image"/></button>
 
-                </div>
-                <div>
-                    <h1>Course List</h1>
-                    <ul>
-                        {filteredContacts.map((course) =>
-                            <dl key = {course.id}>
-                                <dd>Course name = {course.name } </dd>
-                                <dd>Description =   {course.description }</dd>
-                                <dd>Price = {course.price}</dd>
-                                -------------------------------------------
-                            </dl>
-                        )}
-                    </ul>
-                </div>
+                <Autocomplete
+                items={this.state.courseList}
+                shouldItemRender={(course, value) => course.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                getItemValue={ (course) => course.name}
+                renderItem={(course, isHighlighted) =>
+                    <div key={course.id}
+                         style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                        {course.name}
+                    </div>
+                }
+                    value={this.state.value}
+                    onChange={(e) => this.setState({value: e.target.value})}
+                    onSelect={(value) => this.setState({value})}
+
+
+                />
+                <button onClick={() => this.myFunction(this.state.search)}><img  src={image} style={styles} alt="my image"/></button>
+
             </div>
         );
     }

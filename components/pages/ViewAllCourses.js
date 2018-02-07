@@ -38,7 +38,7 @@ function priceFormatter(cell, row) {
 
         onViewCourseSelected(cell, row, rowIndex){
             console.log('Course', row.id);
-            axios.get("http://localhost:8080/api/Course/showCourse/" + row.id);
+            window.open("/courses/" + row.id);
 
 
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron} from 'react-bootstrap';
+import {Jumbotron, Button} from 'react-bootstrap';
 import * as actions  from "../../actions/auth";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -13,14 +13,17 @@ const DashboardPage = ({isAuthenticated, logout} ) => (
             <Jumbotron>
                 <h1>My Dashboard</h1>
                 <p>{isAuthenticated ? (
-                    <button onClick={() => logout()}>Logout</button>
+                    <Button bsStyle="danger" onClick={() => logout()}>Logout</Button>
                 ) : (
                     <div>
                         <Link to="/login">Login</Link>
+                        <Link to="/login">Login</Link>
+
                     </div>
                 )}</p>
             </Jumbotron>
             <CourseList/>
+
             <div>
                 <Link to = "/AllCourses"> View All Courses </Link>
             </div>

@@ -1,29 +1,62 @@
 import React from 'react'
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
-import styles from "../app.css"
+import image from '.././logo.png'
+import PropTypes from "prop-types"
+import * as actions  from ".././actions/auth";
+import { connect } from 'react-redux';
+import {Button} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
-export default class NavigationBar extends React.Component {
-    render() {
-        return (
-            <Navbar className={styles.navbar}>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="/">Kode</a>
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav className={styles.navbar}>
-                    <NavItem eventKey={1} href="/login">Login</NavItem>
-                    <NavItem eventKey={2} href="/signup">Register</NavItem>
-                    <NavDropdown eventKey={3} title="" id="basic-nav-dropdown">
-                        <MenuItem eventKey={3.1}>Action</MenuItem>
-                        <MenuItem eventKey={3.2}>Another action</MenuItem>
-                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                    </NavDropdown>
-                </Nav>
-            </Navbar>
-        );
-    }
+let styles ={
+    width: "160px",
+    height: "100px",
+};
+
+
+
+const NavigationBar = ({isAuthenticated, logout} ) => (
+
+
+            <nav>
+                <div className="navWide">
+                    <div className="wideDiv">
+                        <div>
+                             <a className="image-nav" href='#'> <img  src={image} style={styles} alt="my image"/></a>
+                        </div>
+
+                        {isAuthenticated ? (
+                            <div>
+                                <Button bsStyle="link" onClick={() => logout()}>Logout</Button>
+                                <a href="/dashboard"> Dashboard </a>
+                            </div>
+                            ):(
+                                <div>
+                                    <Link to="/login">Login</Link>
+                                    <Link to="/signUp">Register</Link>
+                                </div>
+                            )}
+
+
+                    </div>
+                </div>
+            </nav>
+
+);
+
+NavigationBar.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: !!state.user.webToken
+    };
 }
+
+
+export default connect(mapStateToProps, { logout: actions.logout })(NavigationBar);
+
+
+
+
 
