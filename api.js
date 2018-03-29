@@ -11,10 +11,10 @@ export default {
 
         },
 
-        register: user => {
-            var apiUrl = "http://localhost:8080/api/demoStudents/add?" +
+        signup: user => {
+            var apiUrl = "http://localhost:8080/api/Student/add?" +
                 "firstName=" + user.firstName + "&lastName="+ user.lastName +
-            "&email=" + user.email +  "&password=" + user.password;
+                "&email=" + user.email +  "&password=" + user.password + "&age=" + user.age;
             console.log(apiUrl);
             axios.post(apiUrl).then(res => res.data.user)
 

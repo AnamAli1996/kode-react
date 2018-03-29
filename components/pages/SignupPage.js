@@ -1,24 +1,36 @@
 import React from "react";
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {signup}  from '../../actions/users';
 import SignupForm from "../forms/SignupForm";
-import { userSignupRequest } from "../../actions/signupActions";
+import {Header, Icon} from "semantic-ui-react";
 
-class SignupPage extends React.Component {
+class SignupPage extends React.Component{
 
-    render() {
-        const { userSignupRequest } = this.props;
-        return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <SignupForm userSignupRequest ={userSignupRequest} />
-                </div>
+    submit = data => this.props.signup(data).then(() => this.props.history.push("/login"));
+
+
+    render(){
+        return(
+            <div>
+                <Header as='h2' style={{color: 'white'}} textAlign='center'>
+                    <Icon style={{color: 'white'}} name='signup' />
+                    {' '}Sign up!
+                </Header>
+
+                <SignupForm  submit ={this.submit}/>
+
             </div>
         );
     }
 }
 
-SignupPage.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
+SignupPage.propTypes ={
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired,
+    signup: PropTypes.func.isRequired
 };
 
-export default connect( null , { userSignupRequest })(SignupPage);
+
+export default connect(null, {signup})(SignupPage);

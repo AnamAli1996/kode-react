@@ -10,11 +10,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./rootReducer";
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {userLoggedIn} from "./actions/auth";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 import './app.css';
-import './flashcard.scss'
 
 const store = createStore(
     rootReducer,

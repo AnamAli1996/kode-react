@@ -65,7 +65,7 @@ function priceFormatter(cell, row) {
 
 
         render(){
-
+            console.log(this.state.courseList);
             return(
                 <BootstrapTable data={this.state.courseList}>
                     <TableHeaderColumn dataField='id' isKey dataSort={ true } dataAlign='center'>Course</TableHeaderColumn>
